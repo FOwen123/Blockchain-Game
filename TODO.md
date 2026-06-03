@@ -61,7 +61,7 @@
 
 ## Phase 6: Multiplayer Live Sync
 
-- [ ] Create a Supabase project for this game.
+- [x] Create a Supabase project for this game.
 - [x] Enable Supabase Realtime.
 - [x] Create a room channel naming pattern such as `race:{roomCode}`.
 - [x] Implement presence sync for connected players.
@@ -109,7 +109,7 @@
 
 ## Phase 10: Vercel Launch Preparation
 
-- [ ] Push the project to GitHub.
+- [x] Push the project to GitHub.
 - [ ] Create a Vercel project manually.
 - [ ] Add `NEXT_PUBLIC_SUPABASE_URL` in Vercel environment variables.
 - [ ] Add `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel environment variables.
