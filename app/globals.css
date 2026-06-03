@@ -1,0 +1,1109 @@
+@import "tailwindcss";
+
+:root {
+  --midnight-track: oklch(0.205 0.04 269);
+  --tunnel-bg: oklch(0.155 0.035 270);
+  --panel: oklch(0.245 0.04 267);
+  --panel-raised: oklch(0.305 0.045 267);
+  --line: oklch(0.43 0.055 266);
+  --ink: oklch(0.925 0.025 257);
+  --muted: oklch(0.72 0.045 255);
+  --boost-cyan: oklch(0.82 0.145 205);
+  --gate-violet: oklch(0.715 0.155 286);
+  --checkpoint-amber: oklch(0.83 0.145 78);
+  --warning-coral: oklch(0.735 0.165 25);
+  --finish-green: oklch(0.79 0.135 150);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--tunnel-bg);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  background:
+    linear-gradient(135deg, oklch(0.13 0.035 270) 0%, var(--tunnel-bg) 42%, oklch(0.18 0.055 250) 100%);
+  color: var(--ink);
+  font-family: var(--font-sora), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--boost-cyan);
+  color: var(--tunnel-bg);
+}
+
+.app-shell {
+  min-height: 100dvh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0 12%, oklch(0.82 0.145 205 / 0.12) 12.3%, transparent 12.8%),
+    linear-gradient(90deg, transparent 0 84%, oklch(0.83 0.145 78 / 0.08) 84.3%, transparent 84.8%);
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+.screen {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: clamp(20px, 4vw, 48px) 0;
+}
+
+.screen--wide {
+  width: min(1480px, calc(100% - 32px));
+}
+
+.screen--spectator {
+  padding-block: clamp(16px, 3vw, 28px);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.split {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.panel--raised {
+  background: var(--panel-raised);
+}
+
+.button {
+  align-items: center;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 800;
+  gap: var(--space-sm);
+  justify-content: center;
+  min-height: 44px;
+  padding: 14px 18px;
+  transition: transform 140ms var(--ease-standard), background 180ms var(--ease-standard), box-shadow 180ms var(--ease-standard), color 180ms var(--ease-standard);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.button:focus-visible,
+.input:focus-visible {
+  outline: 2px solid var(--boost-cyan);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px oklch(0.82 0.145 205 / 0.55), 0 0 18px oklch(0.82 0.145 205 / 0.28);
+}
+
+.button--primary {
+  background: var(--boost-cyan);
+  color: var(--tunnel-bg);
+}
+
+.button--secondary {
+  background: var(--panel-raised);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.button--danger {
+  background: var(--warning-coral);
+  color: var(--tunnel-bg);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.input {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  min-height: 44px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.chip {
+  align-items: center;
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 6px;
+  line-height: 1.2;
+  min-height: 32px;
+  padding: 8px 12px;
+}
+
+.chip--cyan {
+  background: var(--boost-cyan);
+  color: var(--tunnel-bg);
+}
+
+.chip--amber {
+  background: var(--checkpoint-amber);
+  color: var(--tunnel-bg);
+}
+
+.chip--coral {
+  background: var(--warning-coral);
+  color: var(--tunnel-bg);
+}
+
+.chip--green {
+  background: var(--finish-green);
+  color: var(--tunnel-bg);
+}
+
+.display {
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.headline {
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.race-world {
+  background:
+    linear-gradient(180deg, oklch(0.245 0.04 267 / 0.82), oklch(0.205 0.04 269 / 0.92)),
+    var(--midnight-track);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  min-height: 280px;
+  overflow: hidden;
+  position: relative;
+}
+
+.race-world::after {
+  background: linear-gradient(90deg, transparent, oklch(0.82 0.145 205 / 0.15), transparent);
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.track-svg {
+  aspect-ratio: 16 / 9;
+  display: block;
+  height: auto;
+  min-height: 0;
+  width: 100%;
+}
+
+.race-world--topdown {
+  background:
+    radial-gradient(ellipse 42% 38% at 14% 18%, oklch(0.82 0.145 205 / 0.1), transparent),
+    radial-gradient(ellipse 38% 34% at 86% 78%, oklch(0.83 0.145 78 / 0.07), transparent),
+    linear-gradient(180deg, oklch(0.22 0.042 268 / 0.35) 0%, transparent 18%),
+    var(--midnight-track);
+  box-shadow: inset 0 0 0 1px oklch(0.43 0.055 266 / 0.45);
+}
+
+.race-world--topdown::after {
+  display: none;
+}
+
+.race-world--topdown .track-svg {
+  filter: saturate(1.04);
+}
+
+.kart-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.kart-swatch {
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  height: 48px;
+  min-width: 56px;
+  position: relative;
+  transition: border-color 150ms var(--ease-standard), transform 150ms var(--ease-standard);
+}
+
+.kart-swatch:hover {
+  transform: translateY(-1px);
+}
+
+.kart-swatch:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.kart-swatch[aria-pressed="true"] {
+  border-color: var(--ink);
+}
+
+.kart-swatch__mark {
+  align-items: center;
+  background: oklch(0.1 0.02 270 / 0.82);
+  border-radius: 999px;
+  color: var(--ink);
+  display: flex;
+  font-size: 14px;
+  font-weight: 900;
+  height: 22px;
+  justify-content: center;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 22px;
+}
+
+.car-garage {
+  background:
+    radial-gradient(circle at 82% 20%, oklch(0.715 0.155 286 / 0.14), transparent 34%),
+    var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-sm);
+  overflow: hidden;
+  padding: var(--space-md);
+}
+
+.car-garage__svg {
+  display: block;
+  inline-size: 100%;
+  min-height: 172px;
+}
+
+.player-race-layout {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.cockpit {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.landscape-hint {
+  background: var(--checkpoint-amber);
+  color: var(--tunnel-bg);
+  display: none;
+  font-weight: 900;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.cockpit__stage {
+  background:
+    radial-gradient(circle at 50% 32%, oklch(0.94 0.05 220 / 0.88), transparent 3%),
+    linear-gradient(180deg, oklch(0.33 0.13 270) 0%, oklch(0.21 0.07 260) 36%, oklch(0.12 0.04 270) 100%);
+  min-height: clamp(520px, 66svh, 680px);
+  overflow: hidden;
+  position: relative;
+}
+
+.cockpit__stage::after {
+  background: linear-gradient(90deg, var(--boost-cyan), var(--checkpoint-amber));
+  bottom: 0;
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(var(--drive-progress-scale, 0));
+  transform-origin: left center;
+  transition: transform 120ms linear;
+  width: 100%;
+  z-index: 7;
+}
+
+.cockpit__hud {
+  left: 14px;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 4;
+}
+
+.cockpit__question {
+  background: oklch(0.12 0.035 270 / 0.9);
+  border: 1px solid oklch(0.82 0.145 205 / 0.46);
+  border-radius: var(--radius-md);
+  margin-top: 10px;
+  padding: 12px 14px;
+}
+
+.cockpit__question h1 {
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(20px, 3vw, 30px);
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.cockpit__question p {
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+.cockpit__sky,
+.cockpit__road {
+  inset: 0;
+  position: absolute;
+}
+
+.cockpit__sky {
+  background:
+    radial-gradient(circle at 16% 16%, oklch(0.82 0.145 205 / 0.24), transparent 1px),
+    radial-gradient(circle at 76% 18%, oklch(0.83 0.145 78 / 0.2), transparent 1px),
+    radial-gradient(circle at 44% 14%, oklch(0.93 0.03 230 / 0.25), transparent 1px);
+  z-index: 0;
+}
+
+.cockpit__horizon {
+  background: linear-gradient(90deg, transparent, oklch(0.94 0.05 220 / 0.95), transparent);
+  bottom: 55%;
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.cockpit__network {
+  border: 1px solid oklch(0.82 0.145 205 / 0.22);
+  height: 86px;
+  position: absolute;
+  top: 38px;
+  transform: skewX(-24deg);
+  width: 150px;
+}
+
+.cockpit__network--left {
+  left: 18px;
+}
+
+.cockpit__network--right {
+  right: 18px;
+  transform: skewX(24deg);
+}
+
+.cockpit__road {
+  height: 72%;
+  top: 28%;
+  width: 100%;
+  z-index: 1;
+}
+
+.cockpit-road__dash,
+.cockpit-road__lane {
+  transition: stroke-dashoffset 80ms linear;
+}
+
+.cockpit-road__gate {
+  filter: drop-shadow(0 0 8px oklch(0.83 0.145 78 / 0.7));
+  opacity: 0.36;
+  transition: opacity 220ms var(--ease-standard), transform 220ms var(--ease-standard);
+}
+
+.cockpit__stage--checkpoint .cockpit-road__gate {
+  opacity: 1;
+}
+
+.cockpit-road__question-pickup {
+  filter: drop-shadow(0 0 8px oklch(0.83 0.145 78 / 0.82));
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 160ms var(--ease-standard);
+}
+
+.cockpit-road__question-pickup circle:last-of-type {
+  animation: pickup-ring 900ms linear infinite;
+}
+
+.cockpit__speedlines {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.cockpit__speedlines span {
+  animation: speedline-run 620ms linear infinite;
+  animation-delay: var(--speedline-delay);
+  background: linear-gradient(180deg, transparent, oklch(0.82 0.145 205 / 0.72), transparent);
+  height: 118px;
+  left: var(--speedline-left);
+  opacity: 0;
+  position: absolute;
+  top: 28%;
+  transform: translateY(-110%) skewX(-12deg);
+  width: 2px;
+}
+
+.cockpit__stage--checkpoint .cockpit__speedlines span {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+.cockpit-car {
+  bottom: clamp(20px, 3.5svh, 34px);
+  display: grid;
+  isolation: isolate;
+  left: 50%;
+  position: absolute;
+  transform-origin: center 84%;
+  translate: -50% 0;
+  width: clamp(92px, 11vw, 126px);
+  z-index: 3;
+}
+
+.cockpit-car__shadow {
+  align-self: end;
+  background: radial-gradient(ellipse at center, oklch(0.02 0.01 270 / 0.7), oklch(0.02 0.01 270 / 0.22) 44%, transparent 72%);
+  border-radius: 999px;
+  filter: blur(3px);
+  grid-area: 1 / 1;
+  height: 24px;
+  justify-self: center;
+  margin-bottom: 4px;
+  transform: perspective(420px) rotateX(62deg);
+  width: 76%;
+  z-index: 0;
+}
+
+.cockpit-car__model {
+  display: block;
+  grid-area: 1 / 1;
+  inline-size: 100%;
+  transform: translateY(3px);
+  transform-origin: center 84%;
+  z-index: 1;
+}
+
+.cockpit-car--parked .cockpit-car__shadow {
+  opacity: 0.72;
+}
+
+.checkpoint-modal {
+  left: 18px;
+  pointer-events: none;
+  position: absolute;
+  top: 116px;
+  width: min(520px, calc(100% - 430px));
+  z-index: 6;
+}
+
+.checkpoint-card {
+  background: oklch(0.105 0.035 270 / 0.94);
+  border: 1px solid oklch(0.83 0.145 78 / 0.58);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  pointer-events: auto;
+}
+
+.checkpoint-card h1 {
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(19px, 2.6vw, 28px);
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.checkpoint-card p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.checkpoint-card--result {
+  border-color: oklch(0.82 0.145 205 / 0.52);
+}
+
+.checkpoint-card--drive {
+  border-color: oklch(0.82 0.145 205 / 0.54);
+}
+
+.drive-meter {
+  background: oklch(0.08 0.02 270 / 0.9);
+  border: 1px solid oklch(0.82 0.145 205 / 0.22);
+  border-radius: 999px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.drive-meter span {
+  background: linear-gradient(90deg, var(--boost-cyan), var(--checkpoint-amber));
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  width: var(--drive-progress, 0%);
+}
+
+.checkpoint-answers {
+  display: grid;
+  gap: 8px;
+}
+
+.checkpoint-answers .answer-button {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  min-height: 48px;
+  padding: 11px 12px;
+}
+
+.checkpoint-answers .answer-button strong {
+  align-items: center;
+  background: oklch(0.1 0.025 270 / 0.84);
+  border-radius: 999px;
+  display: flex;
+  flex: 0 0 auto;
+  height: 28px;
+  justify-content: center;
+  width: 28px;
+}
+
+.cockpit__status {
+  bottom: 18px;
+  left: 18px;
+  position: absolute;
+  z-index: 5;
+}
+
+.cockpit__controls {
+  bottom: 16px;
+  display: flex;
+  justify-content: flex-end;
+  left: 18px;
+  position: absolute;
+  right: 18px;
+  z-index: 5;
+}
+
+.cockpit__dpad {
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    ". up ."
+    "left . right"
+    ". down .";
+  grid-template-columns: repeat(3, minmax(92px, 1fr));
+  max-width: 560px;
+}
+
+.cockpit-button {
+  background: oklch(0.245 0.04 267 / 0.92);
+  border: 1px solid oklch(0.93 0.03 230 / 0.34);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+  min-height: 74px;
+  padding: 10px 12px;
+  position: relative;
+  text-align: center;
+  transition: transform 140ms var(--ease-standard), border-color 180ms var(--ease-standard), background 180ms var(--ease-standard);
+}
+
+.cockpit-button:hover {
+  border-color: var(--boost-cyan);
+  transform: translateY(-1px);
+}
+
+.cockpit-button:active {
+  transform: scale(0.98);
+}
+
+.cockpit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+  transform: none;
+}
+
+.cockpit-button--correct {
+  background: var(--boost-cyan);
+  color: var(--tunnel-bg);
+}
+
+.cockpit-button--wrong {
+  background: var(--warning-coral);
+  color: var(--tunnel-bg);
+}
+
+.cockpit-button__arrow {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cockpit-button__copy {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.cockpit-button__key {
+  background: oklch(0.1 0.025 270 / 0.84);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+  height: 20px;
+  line-height: 20px;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 20px;
+}
+
+.leader-row {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: 34px minmax(0, 1fr) auto auto;
+  padding: 10px 12px;
+}
+
+.leader-row + .leader-row {
+  margin-top: var(--space-sm);
+}
+
+.podium-grid {
+  align-items: end;
+  display: grid;
+  gap: var(--space-sm);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.podium-card {
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 4px;
+  min-height: 94px;
+  padding: 12px;
+}
+
+.podium-card--1 {
+  border-color: var(--checkpoint-amber);
+  min-height: 122px;
+}
+
+.podium-card--2 {
+  border-color: var(--boost-cyan);
+  min-height: 108px;
+}
+
+.podium-card--3 {
+  border-color: var(--gate-violet);
+}
+
+.podium-rank {
+  color: var(--checkpoint-amber);
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.answer-grid {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.answer-button {
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 56px;
+  padding: 16px;
+  text-align: left;
+  transition: transform 140ms var(--ease-standard), border-color 180ms var(--ease-standard), box-shadow 180ms var(--ease-standard), background 180ms var(--ease-standard);
+}
+
+.answer-button:hover {
+  border-color: var(--boost-cyan);
+}
+
+.answer-button:active {
+  transform: scale(0.99);
+}
+
+.answer-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+.answer-button--correct {
+  background: var(--boost-cyan);
+  color: var(--tunnel-bg);
+}
+
+.answer-button--wrong {
+  background: var(--warning-coral);
+  color: var(--tunnel-bg);
+}
+
+.mode-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.mode-link {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: var(--space-sm);
+  min-height: 128px;
+  padding: var(--space-md);
+  transition: border-color 180ms var(--ease-standard), transform 160ms var(--ease-standard), background 180ms var(--ease-standard);
+}
+
+.mode-link:hover {
+  background: var(--panel-raised);
+  border-color: var(--boost-cyan);
+  transform: translateY(-2px);
+}
+
+@keyframes speedline-run {
+  0% {
+    opacity: 0;
+    transform: translateY(-120%) scaleY(0.55) skewX(-12deg);
+  }
+
+  30% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(78%) scaleY(1.24) skewX(-12deg);
+  }
+}
+
+@keyframes pickup-ring {
+  0% {
+    opacity: 0.9;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    opacity: 0.32;
+    stroke-dashoffset: -10;
+  }
+}
+
+.countdown-number {
+  color: var(--checkpoint-amber);
+  font-family: var(--font-oxanium), var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(72px, 22vw, 160px);
+  font-weight: 900;
+  line-height: 0.9;
+}
+
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (min-width: 760px) {
+  .split {
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  }
+
+  .spectator-layout {
+    grid-template-columns: minmax(0, 1.45fr) minmax(380px, 0.85fr);
+  }
+
+  .screen--spectator .panel {
+    padding: var(--space-md);
+  }
+
+  .screen--spectator .race-world {
+    min-height: 0;
+  }
+
+  .screen--spectator .track-svg {
+    height: clamp(340px, 52vh, 470px);
+    min-height: 0;
+  }
+
+  .player-race-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 0.32fr);
+  }
+
+  .mode-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .panel {
+    padding: var(--space-lg);
+  }
+}
+
+@media (orientation: portrait) and (max-width: 760px) {
+  .landscape-hint {
+    display: block;
+  }
+
+  .cockpit__stage {
+    min-height: 640px;
+  }
+
+  .cockpit__controls {
+    justify-content: center;
+  }
+
+  .cockpit__dpad {
+    grid-template-columns: repeat(3, minmax(76px, 1fr));
+  }
+
+  .checkpoint-modal {
+    left: 14px;
+    right: 14px;
+    top: 132px;
+    width: auto;
+  }
+
+  .cockpit-button {
+    min-height: 70px;
+    padding: 9px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .screen {
+    padding: 10px 0;
+    width: min(1180px, calc(100% - 20px));
+  }
+
+  .player-race-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .player-race-layout > .stack > .panel:first-child {
+    display: none;
+  }
+
+  .player-race-layout > aside {
+    display: none;
+  }
+
+  .cockpit__stage {
+    min-height: calc(100svh - 86px);
+  }
+
+  .cockpit__hud {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+  }
+
+  .cockpit__question {
+    padding: 9px 11px;
+  }
+
+  .cockpit__question h1 {
+    font-size: 18px;
+  }
+
+  .cockpit__question p {
+    font-size: 13px;
+  }
+
+  .checkpoint-modal {
+    left: 10px;
+    top: 76px;
+    width: min(380px, calc(100% - 390px));
+  }
+
+  .checkpoint-card {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .checkpoint-card h1 {
+    font-size: 17px;
+  }
+
+  .checkpoint-card p {
+    display: none;
+  }
+
+  .checkpoint-answers {
+    gap: 6px;
+  }
+
+  .checkpoint-answers .answer-button {
+    font-size: 11px;
+    min-height: 37px;
+    padding: 6px 8px;
+  }
+
+  .checkpoint-answers .answer-button strong {
+    height: 22px;
+    width: 22px;
+  }
+
+  .cockpit-car {
+    bottom: 12px;
+    width: clamp(76px, 11vw, 98px);
+  }
+
+  .cockpit__status {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .cockpit__controls {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .cockpit__dpad {
+    gap: 7px;
+    grid-template-columns: repeat(3, minmax(62px, 1fr));
+    max-width: 360px;
+  }
+
+  .cockpit-button {
+    min-height: 52px;
+    padding: 6px 8px;
+  }
+
+  .cockpit-button__arrow {
+    font-size: 20px;
+  }
+
+  .cockpit-button__copy {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

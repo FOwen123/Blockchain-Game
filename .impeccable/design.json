@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-03T00:00:00+08:00",
+  "title": "Design System: Tokyo Chain Rally",
+  "extensions": {
+    "colorMeta": {
+      "midnight-track": {
+        "role": "primary",
+        "displayName": "Midnight Track",
+        "canonical": "oklch(0.205 0.040 269)",
+        "usage": "Main track and dark structural surface."
+      },
+      "boost-cyan": {
+        "role": "primary",
+        "displayName": "Boost Cyan",
+        "canonical": "oklch(0.820 0.145 205)",
+        "usage": "Primary action, correct-answer boost, progress trails, and focus energy."
+      },
+      "gate-violet": {
+        "role": "secondary",
+        "displayName": "Gate Violet",
+        "canonical": "oklch(0.715 0.155 286)",
+        "usage": "Checkpoint gates and momentary race effects."
+      },
+      "checkpoint-amber": {
+        "role": "secondary",
+        "displayName": "Checkpoint Amber",
+        "canonical": "oklch(0.830 0.145 78)",
+        "usage": "Question checkpoints, countdown emphasis, and active week indicators."
+      },
+      "warning-coral": {
+        "role": "tertiary",
+        "displayName": "Warning Coral",
+        "canonical": "oklch(0.735 0.165 25)",
+        "usage": "Wrong answers, slowdown, host danger actions, and connection problems."
+      },
+      "finish-green": {
+        "role": "tertiary",
+        "displayName": "Finish Green",
+        "canonical": "oklch(0.790 0.135 150)",
+        "usage": "Finish line, completed week states, and success feedback."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Arcade Display",
+        "purpose": "Room title, countdown, finish podium, and spectator checkpoint moments."
+      },
+      "body": {
+        "displayName": "Phone UI Body",
+        "purpose": "Questions, answer choices, topic highlights, and host controls."
+      }
+    },
+    "motion": {
+      "durations": {
+        "tap": "120ms",
+        "boost": "420ms",
+        "checkpoint": "650ms",
+        "countdown": "900ms"
+      },
+      "easing": {
+        "standard": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "snap": "cubic-bezier(0.16, 1, 0.3, 1)"
+      },
+      "rules": [
+        "Animate transform and opacity for phone performance.",
+        "Use glow only to communicate focus, boost, checkpoint, wrong answer, or finish state.",
+        "Provide reduced-motion alternatives for countdown, boosts, gates, and finish animations."
+      ]
+    },
+    "breakpoints": {
+      "phone-small": "360px",
+      "phone": "390px",
+      "phone-large": "430px",
+      "tablet": "768px",
+      "projector": "1280px"
+    },
+    "rules": [
+      "Start with the race, not a landing page.",
+      "Keep each checkpoint to one topic, one question, and one highlight.",
+      "Do not use Nintendo characters, assets, names, tracks, items, or trade dress.",
+      "Do not use casino-like token visuals or speculative trading language.",
+      "Do not let violet dominate the interface."
+    ]
+  }
+}
