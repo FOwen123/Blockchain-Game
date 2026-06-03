@@ -110,26 +110,26 @@
 ## Phase 10: Vercel Launch Preparation
 
 - [x] Push the project to GitHub.
-- [ ] Create a Vercel project manually.
-- [ ] Add `NEXT_PUBLIC_SUPABASE_URL` in Vercel environment variables.
-- [ ] Add `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel environment variables.
-- [ ] Confirm Vercel uses `pnpm`.
-- [ ] Run the Vercel production build.
-- [ ] Open the deployed site and create a test room.
-- [ ] Test one host, one spectator, and at least two phone players on the deployed URL.
-- [ ] Confirm Supabase Realtime works from the deployed Vercel domain.
-- [ ] Confirm QR code join works from phones.
-- [ ] Confirm the final class launch URL is ready to share.
+- [x] Create a Vercel project manually.
+- [x] Add `NEXT_PUBLIC_SUPABASE_URL` in Vercel environment variables.
+- [x] Add `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel environment variables.
+- [x] Confirm Vercel uses `pnpm`.
+- [x] Run the Vercel production build.
+- [x] Open the deployed site and create a test room.
+- [x] Test one host, one spectator, and at least two phone players on the deployed URL.
+- [x] Confirm Supabase Realtime works from the deployed Vercel domain.
+- [x] Confirm QR code join works from phones.
+- [x] Confirm the final class launch URL is ready to share.
 
 ## Phase 11: Class Launch Runbook
 
-- [ ] Open the host page on the laptop.
-- [ ] Open the spectator page on the projector or shared screen.
-- [ ] Create a room and display the QR code.
-- [ ] Wait for classmates to join on phones.
-- [ ] Lock joins when ready.
-- [ ] Start countdown.
-- [ ] Monitor player progress and connection state.
-- [ ] Use host override only if the race gets stuck.
-- [ ] Show final podium.
-- [ ] Keep the room code and reset button available for a second run.
+- [x] Open the host page on the laptop.
+- [x] Open the spectator page on the projector or shared screen.
+- [x] Create a room and display the QR code.
+- [x] Wait for classmates to join on phones.
+- [x] Lock joins when ready.
+- [x] Start countdown.
+- [x] Monitor player progress and connection state.
+- [x] Use host override only if the race gets stuck.
+- [x] Show final podium.
+- [x] Keep the room code and reset button available for a second run.
